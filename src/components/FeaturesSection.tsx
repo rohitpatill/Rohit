@@ -7,42 +7,36 @@ const features = [
     num: "01",
     title: "Autonomous AI Agents",
     desc: "Custom multi-agent systems with autonomous reasoning. End-to-end GenAI pipelines and task-specific AI roles that work 24/7.",
-    highlighted: true,
   },
   {
     icon: Database,
     num: "02",
     title: "Enterprise RAG & Knowledge Graphs",
     desc: "Advanced retrieval with contextual chunking, BM25, and semantic search. GraphRAG with Neo4j for intelligent relationship mapping.",
-    highlighted: false,
   },
   {
     icon: Code2,
     num: "03",
     title: "MCP Server & Tool Orchestration",
     desc: "Custom Model Context Protocol development. Hierarchical architectures for complex tool execution and seamless API integration.",
-    highlighted: false,
   },
   {
     icon: BrainCircuit,
     num: "04",
     title: "Context Engineering",
     desc: "Advanced prompt and context engineering. Token window management and cost-performance tuning for maximum model output.",
-    highlighted: false,
   },
   {
     icon: BarChart3,
     num: "05",
     title: "LLM Evaluation & MLOps",
     desc: "Rigorous model evaluation across 40+ LLMs. Task-specific model selection, fine-tuning, and production monitoring.",
-    highlighted: false,
   },
   {
     icon: GraduationCap,
     num: "06",
     title: "AI Strategy & Training",
     desc: "Use-case discovery and ROI-driven AI auditing. Corporate seminars, team upskilling, and translating business problems into AI solutions.",
-    highlighted: false,
   },
 ];
 
@@ -71,31 +65,25 @@ const FeaturesSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
-            className={`group relative rounded-[2.5rem] p-8 flex flex-col gap-6 transition-all duration-500 hover:scale-[1.02] ${
-              f.highlighted
-                ? "bg-slate-900 text-white shadow-2xl shadow-slate-900/20"
-                : "bg-white border border-slate-100 hover:shadow-xl hover:shadow-slate-200/50"
-            }`}
+            className="group relative rounded-[2.5rem] p-8 flex flex-col gap-6 transition-all duration-500 hover:scale-[1.02] bg-white border border-slate-100 hover:bg-slate-900 hover:text-white hover:shadow-2xl hover:shadow-slate-900/20 active:scale-95 cursor-pointer"
           >
-            <div className={`w-16 h-16 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110 ${f.highlighted ? "bg-white/10" : "bg-blue-50 text-blue-600"}`}>
-              <f.icon className={`w-8 h-8 ${f.highlighted ? "text-white" : "text-blue-500"}`} />
+            <div className="w-16 h-16 rounded-2xl flex items-center justify-center transition-all bg-blue-50 text-blue-600 group-hover:bg-white/10 group-hover:text-white group-hover:scale-110">
+              <f.icon className="w-8 h-8 transition-colors" />
             </div>
             
             <div className="flex flex-col gap-3">
-              <h3 className="font-display font-bold text-xl leading-tight">{f.title}</h3>
-              <p className={`text-base leading-relaxed font-medium ${f.highlighted ? "text-slate-400" : "text-slate-500"}`}>
+              <h3 className="font-display font-bold text-xl leading-tight transition-colors">{f.title}</h3>
+              <p className="text-base leading-relaxed font-medium text-slate-500 group-hover:text-slate-400 transition-colors">
                 {f.desc}
               </p>
             </div>
 
-            <span className={`text-6xl font-display font-black tracking-tighter select-none ${f.highlighted ? "text-white/5" : "text-slate-100"}`}>
+            <span className="text-6xl font-display font-black tracking-tighter select-none text-slate-100 group-hover:text-white/5 transition-colors">
               {f.num}
             </span>
             
             {/* Hover decorative element */}
-            {!f.highlighted && (
-              <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-blue-100 group-hover:bg-blue-400 transition-colors" />
-            )}
+            <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-blue-100 group-hover:bg-[#9effa9] transition-colors" />
           </motion.div>
         ))}
       </div>

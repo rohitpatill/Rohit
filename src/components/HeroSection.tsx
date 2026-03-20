@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Play, MessageSquare, BarChart3, Users, Zap, Layout, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 import heroImg from "@/assets/hero-illustration.png";
 
 const badges = [
@@ -11,7 +12,61 @@ const badges = [
   { icon: <Users className="w-4 h-4 text-cyan-500" />, label: "Leads", top: "35%", right: "-10%", delay: 0.5 },
 ];
 
+const carouselCards = [
+  {
+    title: "Context Engineering",
+    badge: "Semantic Search",
+    model: "E5-small-v2",
+    progress: 85,
+    icon: "MCP"
+  },
+  {
+    title: "Agent Orchestration",
+    badge: "State Management",
+    model: "LangGraph / CrewAI",
+    progress: 92,
+    icon: "LGC"
+  },
+  {
+    title: "Graph RAG",
+    badge: "Knowledge Retrieval",
+    model: "Neo4j / GDS",
+    progress: 78,
+    icon: "GQL"
+  },
+  {
+    title: "Model Evaluation",
+    badge: "Quality Benchmarks",
+    model: "Promptfoo / RAGAS",
+    progress: 95,
+    icon: "EVAL"
+  },
+  {
+    title: "Vector Databases",
+    badge: "High-speed Retrieval",
+    model: "Pinecone / Qdrant",
+    progress: 88,
+    icon: "VEC"
+  },
+  {
+    title: "LLM Security",
+    badge: "Guardrails & Policy",
+    model: "NeMo / LlamaGuard",
+    progress: 99,
+    icon: "SEC"
+  }
+];
+
 const HeroSection = () => {
+  const [currentCard, setCurrentCard] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentCard((prev) => (prev + 1) % carouselCards.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="relative pt-24 pb-20 overflow-hidden bg-white">
       {/* Aesthetic Background */}
@@ -142,9 +197,9 @@ const HeroSection = () => {
               {/* Floating Badges - Hidden on small mobile */}
               {[
                 { icon: <Zap className="w-4 h-4 text-purple-500" />, label: "Autonomous Agents", top: "-10%", left: "-15%", delay: 0.1 },
-                { icon: <MessageSquare className="w-4 h-4 text-blue-500" />, label: "LLM Orchestration", top: "45%", left: "-25%", delay: 0.2 },
+                { icon: <MessageSquare className="w-4 h-4 text-blue-500" />, label: "LLM Orchestration", top: "25%", left: "-25%", delay: 0.2 },
                 { icon: <Layout className="w-4 h-4 text-pink-500" />, label: "Graph RAG", top: "0%", right: "-20%", delay: 0.3 },
-                { icon: <BarChart3 className="w-4 h-4 text-orange-500" />, label: "MCP Servicing", top: "50%", right: "-15%", delay: 0.4 },
+                { icon: <BarChart3 className="w-4 h-4 text-orange-500" />, label: "MCP Servicing", top: "30%", right: "-15%", delay: 0.4 },
               ].map((b, i) => (
                 <motion.div
                   key={i}
@@ -161,34 +216,66 @@ const HeroSection = () => {
                 </motion.div>
               ))}
 
-              {/* Memory MCP Mockup - Better sizing for mobile */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1, duration: 0.6 }}
-                className="absolute md:-bottom-10 -bottom-6 left-1/2 -translate-x-1/2 z-30 bg-white rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-8 shadow-2xl border border-slate-50 w-[90%] md:w-full max-w-[320px] backdrop-blur-sm text-left"
-              >
-                <div className="flex items-center justify-between mb-4 md:mb-6">
-                  <span className="text-[10px] font-black text-slate-400 tracking-[0.2em] uppercase">Context Engineering</span>
-                  <div className="w-2 h-2 rounded-full bg-[#9effa9]" />
+              {/* Animated Carousel of Cards */}
+              <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 z-30 w-[80%] md:w-full max-w-[340px]">
+                <div className="relative overflow-visible h-[180px] md:h-[220px]">
+                  <AnimatePresence mode="popLayout">
+                    <motion.div
+                      key={currentCard}
+                      initial={{ opacity: 0, x: 100 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -100 }}
+                      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                      className="w-full bg-white rounded-[2rem] md:rounded-[2.5rem] p-5 md:p-8 shadow-[0_20px_50px_-10px_rgba(158,255,169,0.1)] border border-white md:border-white/80 backdrop-blur-md text-left"
+                    >
+                      <div className="flex items-center justify-between mb-3 md:mb-6">
+                        <span className="text-[9px] md:text-[10px] font-black text-slate-400 tracking-[0.2em] uppercase">{carouselCards[currentCard].title}</span>
+                        <div className="flex items-center gap-1.5">
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#9effa9] animate-pulse" />
+                          <span className="text-[8px] md:text-[9px] font-bold text-slate-400">ACTIVE</span>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2.5 md:space-y-3 mb-4 md:mb-7">
+                        <div className="h-1.5 md:h-2 w-full bg-slate-50 rounded-full overflow-hidden">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: `${carouselCards[currentCard].progress}%` }}
+                            transition={{ duration: 1, delay: 0.2 }}
+                            className="h-full bg-slate-900 rounded-full"
+                          />
+                        </div>
+                        <div className="flex gap-2">
+                          <div className="h-1 md:h-1.5 w-[60%] bg-slate-50 rounded-full" />
+                          <div className="h-1 md:h-1.5 w-[30%] bg-slate-50 rounded-full" />
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-3 md:gap-4">
+                        <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-slate-950 flex items-center justify-center text-[8px] md:text-[11px] font-black text-[#9effa9] shadow-inner shrink-0 text-center">
+                          {carouselCards[currentCard].icon}
+                        </div>
+                        <div className="flex flex-col overflow-hidden">
+                          <span className="text-[10px] md:text-sm font-black text-slate-900 tracking-tight truncate">{carouselCards[currentCard].model}</span>
+                          <span className="text-[8px] md:text-[10px] text-[#9effa9] font-black uppercase tracking-widest truncate">{carouselCards[currentCard].badge}</span>
+                        </div>
+                      </div>
+
+                      {/* Pagination Indicators - Now clickable */}
+                      <div className="absolute bottom-5 md:bottom-6 right-6 md:right-8 flex gap-1.5 md:gap-2">
+                        {carouselCards.map((_, i) => (
+                          <button
+                            key={i}
+                            onClick={() => setCurrentCard(i)}
+                            className={`h-1 md:h-1.5 rounded-full transition-all duration-300 hover:bg-slate-400 cursor-pointer ${i === currentCard ? 'w-4 md:w-6 bg-slate-950 shadow-sm' : 'w-1 md:w-1.5 bg-slate-200'}`}
+                            aria-label={`Go to card ${i + 1}`}
+                          />
+                        ))}
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
-                <div className="space-y-3 mb-4 md:mb-6">
-                  <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-                    <div className="h-full w-[85%] bg-slate-900 rounded-full" />
-                  </div>
-                  <div className="h-2 w-[70%] bg-slate-100 rounded-full" />
-                  <div className="h-2 w-[90%] bg-slate-100 rounded-full" />
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-900 flex items-center justify-center text-[8px] md:text-[10px] font-bold text-white shadow-sm">
-                    MCP
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-[10px] md:text-xs font-bold text-slate-900 tracking-tight">E5-small-v2</span>
-                    <span className="text-[8px] md:text-[10px] text-slate-400 font-bold uppercase">Semantic Search</span>
-                  </div>
-                </div>
-              </motion.div>
+              </div>
             </div>
           </motion.div>
         </div>
