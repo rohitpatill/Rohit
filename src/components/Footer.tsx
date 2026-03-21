@@ -26,7 +26,7 @@ const Footer = () => (
               <span className="text-slate-900 font-bold mb-3 text-lg flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#9effa9]" /> Email
               </span>
-              <p className="text-slate-500 text-sm font-black">rohitp2001k@gmail.com</p>
+              <p className="text-slate-500 text-sm font-black">will be added soon</p>
             </div>
           </div>
         </div>
