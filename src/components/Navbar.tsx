@@ -7,7 +7,7 @@ const navLinks = [
   { name: "How it Works", path: "#process" },
   { name: "Solutions", path: "#services" },
   { name: "Portfolio", path: "#work" },
-  { name: "Contact", path: "#contact" }
+  { name: "Contact", path: "#contact-form" }
 ];
 
 const Navbar = () => {

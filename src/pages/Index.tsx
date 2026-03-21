@@ -5,6 +5,7 @@ import ProcessSection from "@/components/ProcessSection";
 import ModelEvaluationSection from "@/components/ModelEvaluationSection";
 import BannerSection from "@/components/BannerSection";
 import ActivitySection from "@/components/ActivitySection";
+import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
 const Index = () => (
@@ -16,6 +17,7 @@ const Index = () => (
     <BannerSection />
     <ModelEvaluationSection />
     <ActivitySection />
+    <ContactSection />
     <Footer />
   </div>
 );
