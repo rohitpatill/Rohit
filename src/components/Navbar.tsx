@@ -40,9 +40,9 @@ const Navbar = () => {
           <a href="#" className="font-display text-lg font-bold text-foreground flex items-center gap-2 group">
             <div className="relative flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-slate-950 flex items-center justify-center text-white text-sm font-bold transition-transform group-hover:scale-110">
-                R
+                S
               </div>
-              <span className="text-slate-900 tracking-tight font-extrabold text-xl whitespace-nowrap">Rohit Patil</span>
+              <span className="text-slate-900 tracking-tight font-extrabold text-xl whitespace-nowrap">swayamx</span>
             </div>
           </a>
 
