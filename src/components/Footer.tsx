@@ -78,10 +78,10 @@ const Footer = () => (
       <div className="flex flex-col md:flex-row justify-between items-center gap-10 pt-12 border-t border-slate-200/50">
         <div className="flex gap-6">
           {[
-            { Icon: Github, href: "https://github.com/rohitpatill" },
-            { Icon: Linkedin, href: "https://linkedin.com/in/rohitpatill" },
+            { Icon: Github, href: "" },
+            { Icon: Linkedin, href: "" },
 
-            { Icon: Mail, href: "mailto:rohitp2001k@gmail.com" }
+            { Icon: Mail, href: "" }
           ].map((item, i) => (
             <a key={i} href={item.href} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-2xl bg-white border border-white shadow-sm flex items-center justify-center text-slate-400 hover:text-slate-900 hover:shadow-2xl hover:border-slate-100 transition-all hover:-translate-y-1">
               <item.Icon className="w-5 h-5" />
