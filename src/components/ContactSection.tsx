@@ -122,7 +122,7 @@ const ContactSection = () => {
                     <Smartphone className="w-5 h-5 text-slate-400 group-hover:text-slate-950 transition-colors" />
                   </div>
                   <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest mb-1">Phone</p>
-                  <p className="text-xs font-black text-slate-900">+91 87882 44416</p>
+                  <p className="text-xs font-black text-slate-900">will be added soon</p>
                </div>
             </div>
           </motion.div>
